@@ -1,11 +1,9 @@
-require "test_helper"
+require 'test_helper'
+require 'open-uri'
 
 class RrreaderTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Rrreader::VERSION
-  end
 
-  def test_it_does_something_useful
+  def test_XML
     xml_str = <<-EOF
 <rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
@@ -30,7 +28,10 @@ class RrreaderTest < Minitest::Test
 </rss>
     EOF
 
-    channel = Rrreader::XML(xml_str)
+    stub_request(:get, 'www.example.com')
+      .to_return(status: 200, body: xml_str)
+
+    channel = Rrreader::XML(URI.open('http://www.example.com/'))
 
     assert_equal channel.description, 'description'
     assert_equal channel.title, 'a title'

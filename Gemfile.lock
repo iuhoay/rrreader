@@ -7,7 +7,10 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     coderay (1.1.3)
+    crack (0.4.4)
     ffi (1.13.1)
     formatador (0.2.5)
     guard (2.16.2)
@@ -23,6 +26,7 @@ GEM
     guard-minitest (2.4.6)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    hashdiff (1.0.1)
     listen (3.3.3)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -39,12 +43,17 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    public_suffix (4.0.6)
     rake (12.3.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     shellany (0.0.1)
     thor (1.0.1)
+    webmock (3.10.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
   ruby
@@ -55,6 +64,7 @@ DEPENDENCIES
   minitest (~> 5.0)
   rake (~> 12.0)
   rrreader!
+  webmock
 
 BUNDLED WITH
    2.1.4
