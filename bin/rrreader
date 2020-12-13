@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'rrreader'
+require 'open-uri'
+
+return unless ARGV.length > 0
+
+begin
+  Rrreader::PRINT(URI.open(ARGV[0]))
+rescue Exception => e
+  puts e.message
+end

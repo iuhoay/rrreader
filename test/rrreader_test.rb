@@ -3,7 +3,7 @@ require 'open-uri'
 
 class RrreaderTest < Minitest::Test
 
-  def test_XML
+  def setup
     xml_str = <<-EOF
 <rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
@@ -30,7 +30,9 @@ class RrreaderTest < Minitest::Test
 
     stub_request(:get, 'www.example.com')
       .to_return(status: 200, body: xml_str)
+  end
 
+  def test_XML
     channel = Rrreader::XML(URI.open('http://www.example.com/'))
 
     assert_equal channel.description, 'description'
@@ -41,5 +43,9 @@ class RrreaderTest < Minitest::Test
     assert_equal channel.items[0].link, 'item 1 link'
     assert_equal channel.items[0].guid, 'item 1 guid'
     assert_equal channel.items[0].magnet, 'item 1 magnet'
+  end
+
+  def test_PRINT
+    Rrreader::PRINT(URI.open('http://www.example.com/'))
   end
 end
